@@ -1,0 +1,113 @@
+import random
+
+# Define possible responses for different types of inputs
+responses = {
+    'greetings': ['Hello!', 'Hi there!', 'Hey!', 'Greetings!', 'Hello, how can I help you today?'],
+    'farewells': ['Goodbye!', 'See you later!', 'Bye!', 'Take care!', 'Farewell!'],
+    'feelings': ['I\'m glad to hear that!', 'That\'s great!', 'Good to know!', 'I\'m happy for you!', 'That sounds wonderful!'],
+    'help': ['How can I assist you?', 'What do you need help with?', 'I\'m here to help, what do you need?', 'Please tell me how I can assist.'],
+    'thanks': ['You\'re welcome!', 'No problem!', 'Happy to help!', 'Anytime!', 'Glad I could assist!'],
+    'name': ['I am just a simple chatbot.', 'You can call me Bot.', 'I don\'t have a name, but I\'m here to help!'],
+    'weather': ['I can\'t check the weather, but I hope it\'s nice where you are!', 'It\'s always sunny when I\'m around!', 'I\'m not sure about the weather, but stay safe out there!'],
+    'age': ['I was created recently, so I guess I\'m pretty young!', 'Age is just a number, especially for a bot like me!', 'I don\'t age like humans, but I\'m always learning!'],
+    'how_are_you': ['I\'m doing great! How about you?'],
+    'song': ['Eto vellipoindi manasu o challa gaali...', 'My love is gone...'],
+    'love': ['As a bot, I don’t have feelings.', 'I don’t experience love like humans do.', 'I am just a bot, so I don’t have emotions!'],
+    'default': ['I\'m not sure how to respond to that.', 'Can you tell me more?', 'I don\'t understand.', 'Could you please clarify?', 'Hmm, I\'ll have to think about that.']
+}
+
+# Function to generate a response based on the user input
+def generate_response(user_input):
+    user_input = user_input.lower().strip()
+    
+    # Check for greetings
+    if any(word in user_input for word in ['hello', 'hi', 'hey', 'greetings']):
+        return random.choice(responses['greetings'])
+    
+    # Check for farewells
+    elif any(word in user_input for word in ['bye', 'goodbye', 'see you', 'later']):
+        return random.choice(responses['farewells'])
+    
+    # Check for feelings
+    elif any(word in user_input for word in ['good', 'happy', 'fine', 'well', 'great']):
+        return random.choice(responses['feelings'])
+    
+    # Check for help requests
+    elif any(word in user_input for word in ['help', 'assist', 'support']):
+        return random.choice(responses['help'])
+    
+    # Check for thanks
+    elif any(word in user_input for word in ['thank', 'thanks', 'thank you']):
+        return random.choice(responses['thanks'])
+    
+    # Check if the user asks about the bot's name
+    elif any(word in user_input for word in ['name', 'who are you']):
+        return random.choice(responses['name'])
+    
+    # Check if the user asks about the weather
+    elif any(word in user_input for word in ['weather', 'temperature']):
+        return random.choice(responses['weather'])
+    
+    # Check if the user asks about the bot's age
+    elif any(word in user_input for word in ['age', 'how old']):
+        return random.choice(responses['age'])
+    
+    # Check if the user asks "how are you"
+    elif any(word in user_input for word in ['how are you', 'how\'s it going', 'how are things']):
+        return random.choice(responses['how_are_you'])
+    
+    # Check if the user asks for a song
+    elif any(word in user_input for word in ['sing a song']):
+        return random.choice(responses['song'])
+    
+    # Check if the user expresses love or asks about feelings
+    elif any(word in user_input for word in ['i love you', 'do you have feelings', 'love', 'feelings']):
+        return random.choice(responses['love'])
+    
+    # Default response if no match found
+    else:
+        return random.choice(responses['default'])
+
+# Main function to run the chatbot
+def chatbot():
+    print("Bot: Hello! How can I assist you today?")
+    
+    while True:
+        user_input = input("You: ")
+        if user_input.lower().strip() in ['exit', 'quit', 'bye']:
+            print("Bot: Goodbye! Have a great day!")
+            break
+        
+        response = generate_response(user_input)
+        print(f"Bot: {response}")
+
+# Run the chatbot
+if __name__ == "__main__":
+    chatbot()
+
+
+
+
+
+
+#json file 
+
+{"intents": [
+    {"tag": "greeting","patterns": ["Hi there", "How are you", "Is anyone there?","Hey","Hola", "Hello", "Good day"],"responses": ["Hello", "Good to see you again", "Hi there, how can I help?"],"context": [""]
+    },
+    {"tag": "goodbye",
+    "patterns": ["Bye", "See you later", "Goodbye", "Nice chatting to you, bye", "Till next time"],
+    "responses": ["See you!", "Have a nice day", "Bye! Come back again soon."],
+    "context": [""]
+    },
+    {"tag": "thanks",
+    "patterns": ["Thanks", "Thank you", "That's helpful", "Awesome, thanks", "Thanks for helping me"],
+    "responses": ["My pleasure", "You're Welcome"],
+    "context": [""]
+    },
+    {"tag": "query",
+    "patterns": ["What is Simplilearn?"],
+    "responses": ["Simplilearn is the popular online Bootcamp & online courses learning platform "],
+    "context": [""]
+    } 
+]}
